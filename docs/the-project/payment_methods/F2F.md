@@ -57,7 +57,7 @@ Ensure you follow Haveno protocol
 
 Ultimately, the deal will be completed in Haveno. Buyers must mark payment as sent before sellers can release assets.
 
-Buyers should bring a laptop with them so they can mark the payment as sent. Otherwise, the buyer will end up paying the seller and have to walk away without the monero they paid for (since the seller won’t be able to acknowledge receipt of payment before the buyer acknowledges they sent payment).
+Buyers should bring a laptop with them so they can mark the payment as sent. Otherwise, the buyer will end up paying the seller and have to walk away without the Monero they paid for (since the seller won’t be able to acknowledge receipt of payment before the buyer acknowledges they sent payment).
 
 Sellers should bring a laptop with their Haveno client running no matter what. Once they receive a legitimate payment, they’ll need to mark the payment as received so the assets are released to the buyer. No buyer will want to walk away after paying without proof of a complete deal.
 
