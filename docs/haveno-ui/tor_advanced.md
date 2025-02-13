@@ -7,7 +7,7 @@ This means that we can create and use a HiddenService (aka Onion Service) with p
 
 Ubuntu and other Debian based as well as almost any OS with systemd
 
-1. Configure a hidden service in `/etc/tor/torrc`
+#### 1. Configure a HiddenService in: `/etc/tor/torrc`
 
 ```
 # Haveno incoming anonymity connections
@@ -45,7 +45,7 @@ HiddenServicePort 9999 [::1]:9999
 Reload Tor config to create the HiddenService with: `sudo systemctl reload tor`<br>
 Get *Your_HiddenService_address* `sudo cat /var/lib/tor/haveno_service/hostname`
 
-2. Start Haveno with *Your_HiddenService_address*
+#### 2. Start Haveno with *Your_HiddenService_address*
 
 `/opt/haveno/bin/Haveno --hiddenServiceAddress=Your_HiddenService_address.onion --nodePort=9999`
 
