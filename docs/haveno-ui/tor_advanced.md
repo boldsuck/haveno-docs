@@ -7,10 +7,10 @@ This means that we can create and use a HiddenService (aka Onion Service) with p
 
 We need to configure 2 files on the Whonix system. In the different Whonix types, the two files to be edited are in different places. If using Qubes-Whonix read how to get your IP.
 
-1. Create a [HiddenService on Whonix-Gateway](https://www.whonix.org/wiki/Onion_Services#Step_2:_Edit_Tor_Configuration)
+1. [Create a HiddenService on Whonix-Gateway](https://www.whonix.org/wiki/Onion_Services#Step_2:_Edit_Tor_Configuration)
 2. [Open Whonix-Workstation Firewall Port 9999](https://www.whonix.org/wiki/Onion_Services#Step_2:_Open_Whonix-Workstation_Firewall_Port)
 
-## Configure a HiddenService on the Whonix-Gateway
+## 1. Create a HiddenService on the Whonix-Gateway
 
 File paths are of non-Qubes Whonix running in VirtualBox or KVM - Whonix with Xfce graphical user interface (GUI)
 
@@ -31,12 +31,13 @@ and save the file
     `HiddenServiceVersion 3` as in the examples of the Whonix wiki is **not** required, this is the Tor default. v2 hasn't been supported in Tor for years.
 
 Reload Tor config to create the HiddenService with: `sudo systemctl reload tor`<br>
+Heck, there's even a GUI button for Reload Tor ;-)<br>
 Get Your_HiddenService_address `sudo cat /var/lib/tor/haveno_service/hostname`<br>
 Copy it for your Whonix-Workstation
 
-## Whonix-Gateway is ready, switch to Whonix-Workstation
+Whonix-Gateway is ready, switch to Whonix-Workstation
 
-1. Edit Whonix-Workstation firewall configuration to open port 9999
+## 2. Edit Whonix-Workstation firewall configuration to open port 9999
 
 !!! info
     There is 'Global Firewall Settings' in the Application -> System Menue where it says:<br>
@@ -52,7 +53,7 @@ and save the file
 
 That was all to configure a HiddenService for our app in Whonix.
 
-## Haveno Download & )nstall
+## Haveno Download & Install
 
 1. On Whonix-Workstation, download the latest version of the .deb version of Haveno-reto (now renamed RetoSwap) from https://github.com/retoaccess1/haveno-reto/releases/ (eg: for Haveno-reto v1.0.18, download https://github.com/retoaccess1/haveno-reto/releases/download/v1.0.18/haveno-linux-deb.zip & https://github.com/retoaccess1/haveno-reto/releases/download/v1.0.18/haveno-linux-deb.zip.sig).
 It should download automatically to /home/user/.tb/tor-browser/Browser/Downloads/.
