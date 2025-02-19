@@ -152,3 +152,9 @@ If not create a desktop shortcut: copy (or drag) `/opt/haveno/lib/haveno-Haveno.
 You can list all available haveno-desktop options for cmdline:<br>
 `/opt/haveno/bin/Haveno -h`<br>
 or to use in `/home/user/.local/share/Haveno-reto/haveno.properties`
+
+## Qubes OS
+
+There is a script that uses Haveno with DirectBindTor (currently pull request)
+
+[Script to create appvm to run Haveno on qubes](https://github.com/haveno-dex/haveno/pull/1583)
