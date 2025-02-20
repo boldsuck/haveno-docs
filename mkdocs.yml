@@ -146,4 +146,4 @@ nav:
     - Contributor Guidelines: 'development/contributor-guidelines.md'
   - Haveno UI:
     - Backup & Restore: 'haveno-ui/backup_and_restore.md'
-    - Whonix: 'haveno-ui/tor_advanced.md'
+    - DirectBindTor: 'haveno-ui/DirectBindTor.md'

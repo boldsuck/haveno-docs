@@ -33,8 +33,8 @@ HiddenServicePort 9999 [::1]:9999
     ## Proof of Work (PoW) before establishing Rendezvous Circuits
     ## The lower the queue and burst rates, the higher the puzzle effort tends to be for users.
     HiddenServicePoWDefensesEnabled 1
-    #HiddenServicePoWQueueRate 200           # (Default: 250)
-    #HiddenServicePoWQueueBurst 1000         # (Default: 2500)
+    #HiddenServicePoWQueueRate 200          # (Default: 250)
+    #HiddenServicePoWQueueBurst 1000        # (Default: 2500)
     #CompiledProofOfWorkHash auto           # (Default: auto)
 
     ## Stream limits in the established Rendezvous Circuits
@@ -42,8 +42,8 @@ HiddenServicePort 9999 [::1]:9999
     HiddenServiceMaxStreamsCloseCircuit 1
     ```
 
-Reload Tor config to create the HiddenService with: `sudo systemctl reload tor`<br>
-Get *Your_HiddenService_address* `sudo cat /var/lib/tor/haveno_service/hostname`
+- Reload Tor config to create the HiddenService with: `sudo systemctl reload tor`
+- Get *Your_HiddenService_address*: `sudo cat /var/lib/tor/haveno_service/hostname`
 
 #### 2. Start Haveno with *Your_HiddenService_address*
 
@@ -51,8 +51,8 @@ Get *Your_HiddenService_address* `sudo cat /var/lib/tor/haveno_service/hostname`
 
 ## Whonix
 
-We need to configure 2 files on the Whonix system. In the different Whonix types, the two files to be edited are in different places.<br>
-If using Qubes-Whonix read (1. Whonix Wiki-Link) how to get your IP!
+On Whonix systems we need to configure 2 files. In the different Whonix types, the two files to be edited are in different places.<br>
+Further details please see the two Whonix WiKi links. If you use Qubes-Whonix, read there how to get your IP! `qubesdb-read /qubes-ip`
 
 1. [Create a HiddenService on Whonix-Gateway](https://www.whonix.org/wiki/Onion_Services#Step_2:_Edit_Tor_Configuration)
 2. [Open Whonix-Workstation Firewall Port 9999](https://www.whonix.org/wiki/Onion_Services#Step_2:_Open_Whonix-Workstation_Firewall_Port)
@@ -64,7 +64,8 @@ File paths are of non-Qubes Whonix running in VirtualBox or KVM - Whonix with Xf
 !!! info
     There is a provided `Tor Examples` Button for *torrc.examples* &<br>
     `Tor User Config` in the Whisker Menu `Application` -> `System`<br>
-    Please open *torrc.examples* in your Whonix VM and look at the IP in the webserver example!<br>
+    Please open *torrc.examples* in your Whonix VM and check the IP in web server example!<br>
+    You may need to adjust the TARGET IP<br>
     You can use the `Tor User Config` Button or `sudoedit` in Terminal to edit `50_user.conf`
 
 `sudoedit /usr/local/etc/torrc.d/50_user.conf`
@@ -77,12 +78,13 @@ HiddenServicePort 9999 10.152.152.11:9999
 and save the file.
 
 ??? info
-    `HiddenServiceVersion 3` as in the examples of the Whonix wiki is **not** required, this is the Tor default. v2 hasn't been supported in Tor for years!
+    `HiddenServiceVersion 3` as in the examples of the Whonix wiki is **not** required, this is the Tor default.<br>
+    Hidden (Onion) services version 2 is deprecated and is no longer supported since the 0.4.6.1-alpha Tor release, in 2021!
 
-Reload Tor config to create the HiddenService with: `sudo systemctl reload tor`<br>
-Heck, there's even a GUI button for: `Reload Tor` ;-)<br>
-Get *Your_HiddenService_address* with: `sudo cat /var/lib/tor/haveno_service/hostname`<br>
-**Copy it for your Whonix-Workstation.**
+- Reload Tor config to create the HiddenService with: `sudo systemctl reload tor`<br>
+Alternatively, there's even a GUI button for: `Reload Tor`
+- Get *Your_HiddenService_address* with: `sudo cat /var/lib/tor/haveno_service/hostname`
+- **Copy it for your Whonix-Workstation.**
 
 Whonix-Gateway is ready, switch to Whonix-Workstation.
 
@@ -112,33 +114,28 @@ That was all to configure a HiddenService for our Haveno app in Whonix.
 (eg: for RetoSwap v1.0.18, download https://github.com/retoaccess1/haveno-reto/releases/download/v1.0.18/haveno-linux-deb.zip & https://github.com/retoaccess1/haveno-reto/releases/download/v1.0.18/haveno-linux-deb.zip.sig).<br>
 It should download automatically to `/home/user/.tb/tor-browser/Browser/Downloads/`
 
-2. Verify the signature
-
+2. Verify the signature<br>
 Download RetoSwap Public Key `wget https://retoswap.com/reto_public.asc`<br>
 List Fingerprint: `gpg --show-keys --with-fingerprint reto_public.asc`<br>
 **TODO:** RetoSwap arbs should post Fpr on website and SimpleX-Chat welcome message!<br>
 `gpg --import reto_public.asc`<br>
-`gpg --edit-key DAA24D878B8D36C90120A897CA02DAC12DAE2D0F`<br>
-`trust` <- You may chose 3 or 4<br>
-`save`<br>
-
-Downloading, verifying and trusting keys is a one-time thing. Binaries are verified after each download.<br>
-
+Downloading & verifying keys is a one-time thing. Binaries are verified after each download.<br>
 `cd /home/user/.tb/tor-browser/Browser/Downloads/`<br>
 `gpg --verify haveno-linux-deb.zip.sig && sha512sum haveno-linux-deb.zip`
 
 3. Extract the archive: right-click on the downloaded .zip (eg: /home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb.zip), click “Extract Here”<br>
-4. Install the .deb: open the newly extracted folder `/home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb/`, and in a terminal window on Whonix-Workstation, type sudo dpkg -i (with a trailing space) and then drag the .deb installer from the folder into the terminal to complete the filepath (eg: for Haveno-reto v1.0.18, it should be<br>
-`sudo dpkg -i '/home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb/haveno-v1.0.18-linux-x86_64-installer.deb`.
-Press enter, Haveno-reto should be installed to /opt/haveno/. If it fails because of missing dependencies, run the command `sudo apt install -f` to download and install the missing dependencies, and then try the original sudo dpkg -i '[...].deb' command again.
+4. Install the .deb: open the newly extracted folder `/home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb/` and in a terminal window, type sudo dpkg -i (with a trailing space) and then drag the .deb installer from the folder into the terminal to complete the filepath (eg: for Haveno-reto v1.0.18, it should be<br>
+`sudo dpkg -i '/home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb/haveno-v1.0.18-linux-x86_64-installer.deb`<br>
+Press enter, Haveno-reto should be installed to /opt/haveno/. If it fails because of missing dependencies, run the command `sudo apt install -f` to download and install the missing dependencies and then try the original sudo dpkg -i '[...].deb' command again.
 
-??? info
-    Alternative install in a terminal window<br>
+??? info "Alternative install in a terminal window"
     (I prefer to have everything in the User Downloads folder)<br>
     `cd /home/user/.tb/tor-browser/Browser/Downloads/`<br>
     `gpg --verify haveno-linux-deb.zip.sig && sha512sum haveno-linux-deb.zip`<br>
     `unzip haveno-linux-deb.zip -d /home/user/Downloads/Haveno`<br>
-    `sudo dpkg -i /home/user/Downloads/Haveno/haveno-v*-linux-x86_64-installer.deb`
+    `sudo dpkg -i /home/user/Downloads/Haveno/haveno-v*-linux-x86_64-installer.deb`<br>
+    `rm /home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb*`
+
 
 Haveno Launcher should be in `Applications` -> `Internet` You must edit it to:<br>
 `/opt/haveno/bin/Haveno --hiddenServiceAddress=Your_HiddenService_address.onion --nodePort=9999`
@@ -147,7 +144,7 @@ Haveno Launcher should be in `Applications` -> `Internet` You must edit it to:<b
     Your_HiddenService_address is the saved output from Whonix-Gateway<br>
     `sudo cat /var/lib/tor/haveno_service/hostname`
 
-If not create a desktop shortcut: copy (or drag) `/opt/haveno/lib/haveno-Haveno.desktop to your desktop and add the cmdline options like in the launcher above.
+If not create a desktop shortcut: copy (or drag) `/opt/haveno/lib/haveno-Haveno.desktop` to your desktop and add the cmdline options like in the launcher above.
 
 You can list all available haveno-desktop options for cmdline:<br>
 `/opt/haveno/bin/Haveno -h`<br>
@@ -158,3 +155,17 @@ or to use in `/home/user/.local/share/Haveno-reto/haveno.properties`
 There is a script that uses Haveno with DirectBindTor (currently pull request)
 
 [Script to create appvm to run Haveno on qubes](https://github.com/haveno-dex/haveno/pull/1583)
+
+## Every OS - Backup the Tor Onion Service Private Key
+
+!!! "Reminder"
+    You may backup the onion service key. This is necessary in order to restore it on another machine, after HDD/SSD failure, etc. to recover or reuse your Haveno ID.
+
+Root permission is required to access it ('su -' or sudo)
+
+`cp /var/lib/tor/hidden_service/hs_ed25519_secret_key /home/user/hs_ed25519_secret_key`
+
+Although only the private key is needed to restore a HiddenService, I prefer to back up the entire HiddenService folder:
+`cp -r /var/lib/tor/hidden_service/ /home/user/hidden_service/`
+
+Then save the key or folder in a secure location. Best together with your Haveno wallet seed and backup.
