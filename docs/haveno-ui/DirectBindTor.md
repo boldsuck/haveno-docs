@@ -53,7 +53,7 @@ HiddenServiceEnableIntroDoSDefense 1
 
 ## Whonix
 
-On Whonix systems we need to configure 2 files. In the different Whonix types, the two files to be edited are in different places. Further details please see the two Whonix WiKi links.<br>
+On Whonix systems we need to configure 2 files. In the different Whonix types, the two files to be edited are in different places. Further details please see the two Whonix Wiki links.<br>
 If you use Qubes-Whonix, read there how to get your `TARGET` IP! `qubesdb-read /qubes-ip`
 
 1. [Create a HiddenService on Whonix-Gateway](https://www.whonix.org/wiki/Onion_Services#Step_2:_Edit_Tor_Configuration)
@@ -116,7 +116,7 @@ That was all to configure a HiddenService for our Haveno app in Whonix.
 ### 3. Download & Install Haveno on Whonix-Workstation
 
 For a well-known Haveno main network there is an installation guide in the Whonix Wiki:
-[Downloading_&_Installing_RetoSwap](https://www.whonix.org/wiki/RetoSwap#Downloading_&_Installing_RetoSwap
+[Downloading_&_Installing_RetoSwap](https://www.whonix.org/wiki/RetoSwap#Downloading_&_Installing_RetoSwap)
 
 Haveno Launcher should be in `Applications` -> `Internet` You must edit it to:<br>
 `/opt/haveno/bin/Haveno --hiddenServiceAddress=Your_HiddenService_address.onion --nodePort=9999`
@@ -129,18 +129,18 @@ If not create a desktop shortcut: copy (or drag) `/opt/haveno/lib/haveno-Haveno.
 
 You can list all available haveno-desktop options for cmdline:<br>
 `/opt/haveno/bin/Haveno -h`<br>
-or to use in `/home/user/.local/share/Haveno-reto/haveno.properties`
+or to use in `/home/user/.local/share/Haveno[-.*]/haveno.properties`
 
 ## Qubes OS
 
-For Qubes there are two pull requests for install scripts that uses Haveno with DirectBindTor
+For Qubes there are two pull requests for install scripts that uses Haveno with DirectBindTor:
 
 [Script to create appvm to run Haveno on qubes](https://github.com/haveno-dex/haveno/pull/1583)
 
 Can do both: Haveno with DirectBindTor (static HiddenService) or create a dynamic one with the help of Netlayer/jtorctl.
 
-[install_qubes](https://github.com/haveno-dex/haveno/pull/1611)
-[install_qubes](https://github.com/PromptPunksFauxCough/haveno/tree/install_qubes/scripts/install_qubes)
+- [PR install_qubes](https://github.com/haveno-dex/haveno/pull/1611)
+- [Repo install_qubes](https://github.com/PromptPunksFauxCough/haveno/tree/install_qubes/scripts/install_qubes)
 
 ## Every OS
 
