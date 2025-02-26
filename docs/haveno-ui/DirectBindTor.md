@@ -14,6 +14,8 @@ Ubuntu and other Debian based as well as almost any OS with systemd
 HiddenServiceDir /var/lib/tor/haveno_service/
 HiddenServicePort 9999 127.0.0.1:9999
 HiddenServicePort 9999 [::1]:9999
+# Rate limiting at the Introduction Points (protects the entire Tor network)
+HiddenServiceEnableIntroDoSDefense 1
 ```
 
 ??? info "HiddenService options"
@@ -74,6 +76,8 @@ File paths are of non-Qubes Whonix running in VirtualBox or KVM - Whonix with Xf
 # Haveno incoming anonymity connections
 HiddenServiceDir /var/lib/tor/haveno_service/
 HiddenServicePort 9999 10.152.152.11:9999
+# Rate limiting at the Introduction Points (protects the entire Tor network)
+HiddenServiceEnableIntroDoSDefense 1
 ```
 and save the file.
 
@@ -111,33 +115,8 @@ That was all to configure a HiddenService for our Haveno app in Whonix.
 
 ### 3. Download & Install Haveno on Whonix-Workstation
 
-1. Download the latest version of the .deb & .sig version of Haveno-reto (now renamed RetoSwap) from https://github.com/retoaccess1/haveno-reto/releases/ or https://RetoSwap.com <br>
-(eg: for RetoSwap v1.0.18, download https://github.com/retoaccess1/haveno-reto/releases/download/v1.0.18/haveno-linux-deb.zip & https://github.com/retoaccess1/haveno-reto/releases/download/v1.0.18/haveno-linux-deb.zip.sig).<br>
-It should download automatically to `/home/user/.tb/tor-browser/Browser/Downloads/`
-
-2. Verify the signature<br>
-Download RetoSwap Public Key `wget https://retoswap.com/reto_public.asc`<br>
-List Fingerprint: `gpg --show-keys --with-fingerprint reto_public.asc`<br>
-**TODO:** RetoSwap arbs should post Fpr on website and SimpleX-Chat welcome message!<br>
-`gpg --import reto_public.asc`<br>
-Downloading & verifying keys is a one-time thing. Binaries are verified after each download.<br>
-`cd /home/user/.tb/tor-browser/Browser/Downloads/`<br>
-`gpg --verify haveno-linux-deb.zip.sig && sha512sum haveno-linux-deb.zip`
-
-3. Extract the archive: right-click on the downloaded .zip (eg: /home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb.zip), click “Extract Here”<br>
-4. Install the .deb: open the newly extracted folder<br>
-`/home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb/` and in a terminal window, type sudo dpkg -i (with a trailing space) and then drag the .deb installer from the folder into the terminal to complete the filepath (eg: for Haveno-reto v1.0.18, it should be:<br>
-`sudo dpkg -i '/home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb/haveno-v1.0.18-linux-x86_64-installer.deb`<br>
-Press enter, Haveno-reto should be installed to /opt/haveno/. If it fails because of missing dependencies, run the command `sudo apt install -f` to download and install the missing dependencies and then try the original `sudo dpkg -i '[...].deb'` command again.
-
-??? info "Alternative install in a terminal window"
-    Hint: I prefer to have everything in the User Downloads folder<br>
-    `cd /home/user/.tb/tor-browser/Browser/Downloads/`<br>
-    `gpg --verify haveno-linux-deb.zip.sig && sha512sum haveno-linux-deb.zip`<br>
-    `unzip haveno-linux-deb.zip -d /home/user/Downloads/Haveno`<br>
-    `sudo dpkg -i /home/user/Downloads/Haveno/haveno-v*-linux-x86_64-installer.deb`<br>
-    `rm /home/user/.tb/tor-browser/Browser/Downloads/haveno-linux-deb*`
-
+For a well-known Haveno main network there is an installation guide in the Whonix Wiki:
+[Downloading_&_Installing_RetoSwap](https://www.whonix.org/wiki/RetoSwap#Downloading_&_Installing_RetoSwap
 
 Haveno Launcher should be in `Applications` -> `Internet` You must edit it to:<br>
 `/opt/haveno/bin/Haveno --hiddenServiceAddress=Your_HiddenService_address.onion --nodePort=9999`
@@ -154,9 +133,14 @@ or to use in `/home/user/.local/share/Haveno-reto/haveno.properties`
 
 ## Qubes OS
 
-There is a script that uses Haveno with DirectBindTor (currently pull request)
+For Qubes there are two pull requests for install scripts that uses Haveno with DirectBindTor
 
 [Script to create appvm to run Haveno on qubes](https://github.com/haveno-dex/haveno/pull/1583)
+
+Can do both: Haveno with DirectBindTor (static HiddenService) or create a dynamic one with the help of Netlayer/jtorctl.
+
+[install_qubes](https://github.com/haveno-dex/haveno/pull/1611)
+[install_qubes](https://github.com/PromptPunksFauxCough/haveno/tree/install_qubes/scripts/install_qubes)
 
 ## Every OS
 
