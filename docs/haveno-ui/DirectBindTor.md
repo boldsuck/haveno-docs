@@ -139,8 +139,8 @@ For Qubes there are two pull requests for install scripts that uses Haveno with 
 
 Can do both: Haveno with DirectBindTor (static HiddenService) or create a dynamic one with the help of Netlayer/jtorctl.
 
-- [PR install_qubes](https://github.com/haveno-dex/haveno/pull/1611)
-- [Repo install_qubes](https://github.com/PromptPunksFauxCough/haveno/tree/install_qubes/scripts/install_qubes)
+- [PR install_qubes](https://github.com/haveno-dex/haveno/pull/1628)
+- [Repo install_qubes](https://github.com/PromptPunksFauxCough/haveno/tree/install_whonix_qubes/scripts/install_whonix_qubes)
 
 ## Every OS
 
