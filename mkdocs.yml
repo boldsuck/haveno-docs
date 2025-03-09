@@ -148,3 +148,4 @@ nav:
   - Haveno UI:
     - Backup & Restore: 'haveno-ui/backup_and_restore.md'
     - DirectBindTor: 'haveno-ui/DirectBindTor.md'
+    - ExternalTor: 'haveno-ui/external-tor-usage.md'
